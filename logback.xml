@@ -1,0 +1,33 @@
+<configuration>
+
+<!-- 
+THIS FILE IS FOR DEVELOPMENT USE ONLY. IT CREATES AN APPENDER TO THE CONSOLE AND CAN BE EASILY USED
+DURING DEBUGGING AND UNIT TESTING.
+
+DO NOT USE THIS DURING DEPLOYMENT. THE DEPLOYMENT CONFIGURATION IS CONTAINED IN THE 'CONF' DIRECTORY.
+THE BUILD SCRIPT SPECIFICALLY IGNORES THIS FILE.
+-->
+
+  <jmxConfigurator />
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>D:\Jaguar_Project\subcom\checkout\SubCom\deploy\logs\SubCom.log</file>
+
+    <encoder>
+      <pattern>%d{ISO8601} | [%thread] | %-5level | %logger | jobKey:%X{jobKey} | %msg%n%ex</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{ISO8601} [%thread] %-5level %logger jobKey:%X{jobKey} - %msg%n%ex</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.apache.http" level="INFO"/>
+  
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
